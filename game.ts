@@ -3,7 +3,7 @@ import chalk from "chalk";
 
 const randomNumber: number = Math.floor(Math.random()*100)+1
 let remainingChances=6;
-console.log(randomNumber);
+// console.log(randomNumber);
 function validNumber(input:string): boolean| string{
 
     const number= parseFloat(input);
