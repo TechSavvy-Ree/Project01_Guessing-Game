@@ -23,29 +23,38 @@ async function askForGuess() {
         validate: validNumber,
     }])
     .then ((answer: any)=>{
-        const guessedNumber = parseFloat(answer.guess)
+        const guessedNumber = parseInt(answer.guess)
         if(guessedNumber === randomNumber){
-        console.log(chalk.bgBlue.bgMagentaBright(`Congrats! You guessed the number ${randomNumber} correctly.`));
-        process.exit(0)
+        console.log(chalk.bgBlue.bgMagentaBright
+            (`Congratulations! You guessed the number ${randomNumber} correctly.`)
+        );
+        process.exit(0);
     }else if (guessedNumber < randomNumber){
         remainingChances--;
-        console.log(chalk.bgBlue.bgRedBright(`Guess again, your guessed number is very low.
+        console.log(chalk.bgBlue.bgRedBright
+            (`Guess again, your guessed number is less than actual number.
         Now your remaining chances are:${remainingChances}`));   
 
     if(remainingChances == 0){
-        console.log(chalk.bgMagentaBright.bgYellowBright(`Sorry! You have no more chance.
-        Correct number is ${randomNumber}`));
+        console.log(chalk.bgMagentaBright.bgYellowBright
+            (`Sorry! You have no more chance.
+        Correct number is ${randomNumber}`)
+        );
+        process.exit(0);
     } else{
         askForGuess();
     }}
     else if (guessedNumber > randomNumber){
         remainingChances--;
-        console.log(chalk.bgBlue.bgRedBright(`Guess again, your guessed number is very high.
-        Now your remaining chances are:${remainingChances}`)); 
+        console.log(chalk.bgBlue.bgRedBright
+            (`Guess again, your guessed number is greater than actual number.
+        Now your remaining chances are:${remainingChances}`)
+        ); 
 
     if(remainingChances == 0){
-        console.log(chalk.bgMagentaBright.bgYellowBright(`Sorry! You have no more chance. 
+        console.log(chalk.bgMagentaBright.bgYellowBright(`Sorry! You have no more chance.
      Correct number is ${randomNumber}`));
+     process.exit(0);
     }else{
         askForGuess();
 
